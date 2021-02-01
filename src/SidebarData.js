@@ -12,9 +12,9 @@ export const SidebarData = [
   },
   
   {
-    title: 'Forum',
-    path: '/socialcrown/forum',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    title: 'Direct Messages',
+    path: '/socialcrown/dms',
+    icon: <IoIcons.IoIosPaperPlane />,
     cName: 'nav-text'
   },
   {

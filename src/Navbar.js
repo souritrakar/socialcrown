@@ -1,5 +1,5 @@
 import React from "react";
-import logo2 from "./images/logocrown.png";
+import logo2 from "./images/socialcrown.png";
 import {withRouter} from "react-router-dom"
 import "./Navbar.css"
 class Navbar extends React.Component {
@@ -11,7 +11,7 @@ class Navbar extends React.Component {
       <div id="navbar">
         <img
         onClick={()=>{this.props.history.push("/socialcrown")}}
-          style={{ width: "9%", height: "5%", cursor: "pointer" }}
+          style={{ width: "9%", height: "20vh", cursor: "pointer" }}
           src={logo2}
           alt="logo"
          
@@ -33,7 +33,7 @@ class Navbar extends React.Component {
          
         </p>
         </a>
-        <a href="/socialcrown/contact">
+        <a target="_blank" href="mailto:souritra.kar@gmail.com">
         <p
           
         >

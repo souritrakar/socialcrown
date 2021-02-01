@@ -6,6 +6,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import firebase from "../firebase"
 import TextField from '@material-ui/core/TextField';
+import DeleteIcon from '@material-ui/icons/Delete';
 export default function Post(props){
 
 const [likes,setLikes]= React.useState(0)
@@ -18,7 +19,7 @@ React.useEffect(()=>{
   if(props.postId){
 
 
-  return firebase.firestore().collection("Posts").doc(props.postId).collection("Comments").onSnapshot(snapshot=>{
+ firebase.firestore().collection("Posts").doc(props.postId).collection("Comments").onSnapshot(snapshot=>{
 setComments(snapshot.docs.map(doc=>doc.data()))
 if(props.postId){
 
@@ -41,7 +42,7 @@ if(props.postId){
 else{
   alert("error")
 }
-})
+},[props.postId,props.currentuser])
 
 const commentPost=()=>{
   if(props.postId){
@@ -64,25 +65,39 @@ const deletePost=()=>{
      var confirm= window.confirm("This will delete your post. Are you sure?")
      if(confirm){
        firebase.firestore().collection("Posts").doc(props.postId).delete().then(()=>{alert("Post deleted.")})
+   
      }
+  }
+  else{
+    alert("Error.")
   }
 }
   return(
+    
     <div className="post">
       
         <div className="post_header"> 
-      {
-        props.currentuser===props.username &&
-        (
-          <button onClick={deletePost}>Delete post</button>
-        )
-        
-      }
+     
         <Avatar  style={{marginTop:"1.7%"}}
         className="post_avatar"
         alt='AmolChillarge'
         src={props.photo} />
             <h3 style={{marginTop:"1.7%"}}>{props.username}</h3>
+            {
+        props.currentuser===props.username &&
+        (
+          <Button
+          variant="contained"
+          color="black"
+      style={{marginLeft:"5%",marginTop:"2%"}}
+      onClick={deletePost}
+          startIcon={<DeleteIcon />}
+      >
+          DELETE
+      </Button>
+        )
+        
+      }
             </div>
 
             <br/>

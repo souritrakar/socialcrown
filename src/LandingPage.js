@@ -10,7 +10,7 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import Post from "./components/Post"
 import { IconButton,Button } from '@material-ui/core';
 import Skeleton from 'react-loading-skeleton';
-import logo2 from "./images/logocrown.png"
+import logo2 from "./images/socialcrown.png"
 import animationData from "./images/loading.json"
 import Lottie from "react-lottie"
 export default class LandingPage extends React.Component{
@@ -91,12 +91,14 @@ export default class LandingPage extends React.Component{
                 POST
             </Button>
             <br/>
-           <h2>* Note : Document reads from database has a daily quota, so if you cannot see posts, its probably because of extension of quota. </h2> 
+            <br/>
+           <h2>* Note : Document reads from database has a daily quota, so if you cannot see posts, its probably the end of the quota. </h2> 
             </center> : <h1></h1>
             
             }
 
 
+                <br/>
                 <br/>
                 <br/>
      

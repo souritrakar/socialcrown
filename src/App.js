@@ -14,19 +14,23 @@ import HomeIcon from '@material-ui/icons/Home';
 import SignUp from "./SignUp"
 import LogIn from "./LogIn"
 import LandingPage from './LandingPage';
+import ChatScreen from './Chat/ChatScreen';
+import DefaultRoom from './DefaultRoom';
 
 
 const Main = withRouter(({location})=>{
   return(
     <div className="App">
       {
-        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && <Navbar/> 
+        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" &&  <Navbar/> 
       }
        <Switch>
           <Route exact path="/socialcrown" component={Home}/>
           <Route path="/socialcrown/signup" component={SignUp}/>
           <Route path="/socialcrown/login" component={LogIn}/>
           <Route path="/socialcrown/home" component={LandingPage}/>
+          <Route path="/socialcrown/dms/:roomid" component={ChatScreen}/>
+          <Route path="/socialcrown/dms" component={DefaultRoom}/>
           <Route component={NotFound} />
    
         </Switch>

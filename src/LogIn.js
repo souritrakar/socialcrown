@@ -3,6 +3,7 @@ import firebase from "./firebase"
 import TextField from '@material-ui/core/TextField';
 import animationData from "./images/login.json"
 import Lottie from "react-lottie"
+import { FcGoogle } from "react-icons/fc";
 export default class LogIn extends React.Component{
 constructor(props){
     super(props)
@@ -27,10 +28,37 @@ if(this.state.username.length<20){
 
  
 }
+
     
     componentDidMount(){
       document.title="Login"
     }
+    onSubmit=()=>{
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth()
+.signInWithPopup(provider)
+.then((result) => {
+   
+  var credential = result.credential;
+
+  var token = credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+
+  this.props.history.push("/socialcrown/home")
+  // ...
+}).catch((error) => {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  console.log(errorMessage,email)
+  // ...
+});
+  }
     render(){
       const defaultOptions = {
         loop: true,
@@ -99,6 +127,27 @@ if(this.state.username.length<20){
                   <strong style={{fontFamily:"Raleway, sans-serif"}}>LOGIN</strong>
                 </a>
               </div>
+                  
+            <div style={{display:"flex",flexDirection:"row",marginRight:"9%"}} className="googlesignup">
+              <FcGoogle size={50} style={{marginRight:"5%",marginTop:"20%"}}/> 
+              
+              <div
+              style={{marginBottom:"5%"}}
+              className="button_cont"
+              align="center"
+              style={{ marginTop: 30,color:"red" }}
+              onClick={()=>{this.onSubmit()}}
+            >
+              <a
+                className="example_e"
+                
+                target="_blank"
+                rel="nofollow noopener"
+              >
+                <strong style={{fontFamily:"Raleway, sans-serif"}}>GOOGLE LOGIN</strong>
+              </a>
+            </div>
+            </div>
             </form>
           )}
   

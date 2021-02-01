@@ -27,6 +27,7 @@ const handleInput=(e)=>{
     }
     else{
         alert("That file type is not supported!")
+        setFile(null)
     }
        
 
@@ -53,13 +54,14 @@ const handleInput=(e)=>{
                     .child(file.name)
                     .getDownloadURL()
                     .then(url=>{
-    
+                        // FCEF60466FAAB0EB12D42D940D11FB90E671
                         if(fileType==="image"){
                             firebase.firestore().collection("Posts").add({
                                 timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                                 username:props.username,
                                 caption:caption,
                                 imageurl:url,
+                                
                  
                                 
                                 pfp:props.pfp,
@@ -97,7 +99,7 @@ const handleInput=(e)=>{
             )
         }
         else{
-            alert("Caption/File is missing. Try again")
+            alert("Caption/File is missing or there is an error with the file type. Try again")
         }
 
     }    

@@ -58,7 +58,7 @@ export default class Home extends React.Component {
             <br/>
             <p style={{ fontSize: 30, fontWeight: 300 }}>
 
-            It all starts with the first post.
+            Be the King of social presence.
               </p>
           </div>
           <Lottie options={defaultOptions2} height="95%" width="50%" />

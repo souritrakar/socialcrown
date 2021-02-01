@@ -27,7 +27,7 @@ signUp=(email,password)=>{
     firebase.firestore().collection("Users").doc(email).set({
       username:this.state.username,
       password:password,
-      email:this.state.username
+      email:this.state.email
     })
     
 
