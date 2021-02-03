@@ -15,6 +15,7 @@ export default class ChatScreen extends React.Component{
       firebase.auth().onAuthStateChanged(cred=>{
         if(cred){
           this.setState({user:cred})
+          firebase.firestore().collection("T")
         }
       })
     }
@@ -23,7 +24,7 @@ export default class ChatScreen extends React.Component{
         return(
             <div style={{display:"flex",flexDirection:"row"}}>
               <Sidebar user={this.state.user}/>
-              <Room  roomid={this.props.match.params.roomid}/>
+              <Room  user={this.state.user} roomid={this.props.match.params.roomid}/>
 
 
             </div>

@@ -1,7 +1,8 @@
 .chat {
-    flex: 0.65;
+    flex:0.75;
     display: flex;
     flex-direction: column;
+    height:min-content
   }
   
   .chat__header {
@@ -29,7 +30,7 @@
     position: relative;
     font-size: 16px;
     padding: 10px;
-    width: fit-content;
+    width: 50%;
     border-radius: 10px;
     background-color: #ffffff;
     margin-bottom: 30px;
@@ -38,18 +39,19 @@
   .chat__reciever {
     margin-left: auto;
     background-color: #dcf8c6;
+    width:30%
   }
   
   .chat__timestamp {
     margin-left: 10px;
-    font-size: xx-small;
+ 
   }
   
   .chat__name {
     position: absolute;
-    top: -15px;
+    top: -20px;
     font-weight: 800;
-    font-size: xx-small;
+    font-size: 30
   }
   
   .chat__headerRight {
@@ -59,13 +61,15 @@
   }
   
   .chat__body {
-    flex: 1;
+ 
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
     background-repeat: repeat;
     background-position: center;
     padding: 30px;
-   overflow: hidden;
-   overflow-y: scroll;
+   overflow: scroll;
+   border:5px solid black;
+   height:28%;
+   overflow:scroll
   }
   
   .chat__footer {
@@ -74,6 +78,7 @@
     align-items: center;
     height: 62px;
     border-top: 1px solid lightgray;
+   
   }
   
   .chat__footer > form {
@@ -86,6 +91,7 @@
     border-radius: 30px;
     padding: 10px;
     border: none;
+    
   }
   
   .chat__footer > form > button {

@@ -14,6 +14,14 @@ export default class DefaultRoom extends React.Component{
         firebase.auth().onAuthStateChanged(cred=>{
           if(cred){
             this.setState({user:cred})
+            firebase.firestore().collection("Users").doc(cred.email).collection("Threads").get().then(snap=>{
+              if(snap.docs.length>0){
+                console.log(snap.docs.map(doc=>{
+                  this.props.history.push("/socialcrown/dms/"+doc.data().roomid)
+                }))
+
+              }
+            })
             
           }
         })
@@ -55,9 +63,10 @@ export default class DefaultRoom extends React.Component{
                 <center><h1>Enter your desired roomname below:</h1></center>
                 <br/>
                 <br/>
-               <center> <input onChange={(e)=>{this.setState({roomname:e.target.value})}} style={{width:"30%",height:"5vh",fontSize:20,outline:"none"}} placeholder="Create room" /></center>
+               <center> <input  roomname={this.state.roomname}onChange={(e)=>{this.setState({roomname:e.target.value})}} style={{width:"30%",height:"5vh",fontSize:20,outline:"none"}} placeholder="Create room" /></center>
                <br/>
                <br/>
+
                 <center><h1>Click 'Add new Chat!'</h1></center>
                 <br/>
                 <br/>
