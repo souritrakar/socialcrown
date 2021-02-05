@@ -39,7 +39,7 @@
   .chat__reciever {
     margin-left: auto;
     background-color: #dcf8c6;
-    width:30%
+    width:50%
   }
   
   .chat__timestamp {
@@ -66,10 +66,10 @@
     background-repeat: repeat;
     background-position: center;
     padding: 30px;
-   overflow: scroll;
+
    border:5px solid black;
-   height:28%;
-   overflow:scroll
+   height:8%;
+   overflow-y:scroll
   }
   
   .chat__footer {
@@ -96,4 +96,12 @@
   
   .chat__footer > form > button {
     display: none;
+  }
+
+  a {
+    text-decoration: none;
+
+  }
+  h2  {
+    color:black
   }

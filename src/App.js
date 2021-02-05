@@ -16,13 +16,14 @@ import LogIn from "./LogIn"
 import LandingPage from './LandingPage';
 import ChatScreen from './Chat/ChatScreen';
 import DefaultRoom from './DefaultRoom';
+import VideoRoom from './Chat/VideoRoom';
 
 
 const Main = withRouter(({location})=>{
   return(
     <div className="App">
       {
-        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" &&  <Navbar/> 
+        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" && !location.pathname.indexOf("/socialcrown/video/") == 0 && <Navbar/> 
       }
        <Switch>
           <Route exact path="/socialcrown" component={Home}/>
@@ -31,6 +32,7 @@ const Main = withRouter(({location})=>{
           <Route path="/socialcrown/home" component={LandingPage}/>
           <Route path="/socialcrown/dms/:roomid" component={ChatScreen}/>
           <Route path="/socialcrown/dms" component={DefaultRoom}/>
+          <Route path="/socialcrown/video/:videoid" component={VideoRoom}/>
           <Route component={NotFound} />
    
         </Switch>

@@ -1,4 +1,4 @@
-#navbar {
+#navbar1 {
     position: relative;
     display: flex;
     list-style: none;
@@ -6,11 +6,11 @@
     justify-content: center;
   }
   
-  #navbar > img {
+  #navbar1 > img {
     margin-right: 200px;
   }
   
-  #navbar > a {
+  #navbar1 > a {
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -20,7 +20,7 @@
     cursor: pointer;
   }
   
-  #navbar > a:hover {
+  #navbar1 > a:hover {
     background: #45B649;
     padding: 15px;
     border-radius: 10%;

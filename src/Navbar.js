@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     }
   render() {
     return (
-      <div id="navbar">
+      <div id="navbar1">
         <img
         onClick={()=>{this.props.history.push("/socialcrown")}}
           style={{ width: "9%", height: "20vh", cursor: "pointer" }}

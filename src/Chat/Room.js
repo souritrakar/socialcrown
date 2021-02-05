@@ -4,7 +4,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import SendIcon from '@material-ui/icons/Send';
 import MicIcon from "@material-ui/icons/Mic";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
 import "./Chat.css";
 import firebase from "../firebase"
 import { ChatFeed, Message } from 'react-chat-ui'
@@ -12,6 +12,11 @@ import animationData from "../images/loading.json"
 import Lottie from "react-lottie"
 import { animateScroll } from "react-scroll";
 import {Spinner} from "react-bootstrap"
+
+import {Button} from 'react-bootstrap';
+import VideocamIcon from '@material-ui/icons/Videocam';
+
+
 function Chat(props) {
   const [input, setInput] = useState("");
   const [seed, setSeed] = useState("");
@@ -19,7 +24,7 @@ function Chat(props) {
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const[loaded,setLoaded] = useState(false)
-
+  const history= useHistory()
 
   const addMessage=(message)=>{
     if(props.user ){
@@ -34,6 +39,8 @@ function Chat(props) {
     
         }).then(()=>{
           setInput("")
+        }).then(()=>{
+          scrollToBottom()
         })
       }
       else{
@@ -56,17 +63,25 @@ function Chat(props) {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+var mymessage= "Come chat with me in Social Crown Direct messaging! Join my room here: "+window.location.href
+var message= mymessage.split(' ').join("%20")
+var link="https://api.whatsapp.com/send?text="+message
+
+
 React.useEffect(()=>{
+
   firebase.firestore().collection("Threads").doc(props.roomid).get().then((doc)=>{
     if(doc.exists){
-      firebase.firestore().collection("Users").doc(props.user.displayName).get().then(()=>{
+     
+      setRoomName(doc.data().roomname)
+      firebase.firestore().collection("Users").doc(props.user.email).collection("Threads").doc(props.roomid).get().then(doc=>{
         if(!doc.exists){
           firebase.firestore().collection("Users").doc(props.user.email).collection("Threads").doc(props.roomid).set({
-            roomid:props.roomid
+            roomid:props.roomid,
+            roomname:roomName
           })
         }
       })
-      setRoomName(doc.data().roomname)
       firebase.firestore().collection("Threads").doc(props.roomid).collection("Messages").orderBy("timestamp","asc").onSnapshot(snapshot=>{
         const messagearray=[]
         snapshot.forEach(doc=>{
@@ -91,9 +106,16 @@ const scrollToBottom= () => {
   });
 }
 
+const generateRoom=()=>{
+  var videoid= props.roomid;
+  history.push("/socialcrown/video/"+props.roomid)
+  addMessage(props.user.displayName+" has started a video call! Join now :  "+window.location.href )
+
+}
+
  if(loaded!==true){
   return (
-    <Spinner animation="border" />
+   <center> <Spinner animation="border" /></center>
   );
  } 
  else{
@@ -105,22 +127,28 @@ const scrollToBottom= () => {
 
       <div className="chat__headerInfo">
         <h3>{roomName}</h3>
-        <p>
-          last seen{" "}
-         
-        </p>
+     
       </div>
 
       <div className="chat__headerRight">
-        <IconButton>
-          <SearchOutlined />
+
+      <a style={{textDecoration:"none"}} target="_blank" rel="noreferrer" href={link}> 
+      <Button className="btn1-primary" style={{backgroundColor:"lightgreen"}} variant="outline-success">
+      
+        Share Room
+        
+        
+        </Button>
+        </a>
+     
+        <IconButton onClick={()=>{generateRoom()}}>
+          <VideocamIcon  />
         </IconButton>
         <IconButton>
           <AttachFile />
         </IconButton>
-        <IconButton>
-          <MoreVert />
-        </IconButton>
+  
+       
       </div>
     </div>
 

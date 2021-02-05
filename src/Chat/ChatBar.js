@@ -91,7 +91,7 @@ function Sidebar({user}) {
       <center> <TextField variant="outlined" value={roomname} onChange={(e)=>{setRoomName(e.target.value)}} style={{width:"30%",height:"5vh",fontSize:20,outline:"none"}} placeholder="Your awesome room name" /></center>
       <br/>
       <br/>
-          <center><BootStrapBtn variant="success" onClick={()=>{createRoom(roomname)}} >
+          <center><BootStrapBtn style={{backgroundColor:"#00B4DB"}} variant="info" onClick={()=>{createRoom(roomname)}} >
             Add new Chat!
             </BootStrapBtn></center>
         <center>
@@ -154,10 +154,9 @@ return(
 );
  } 
  else{
-   return(
-    <Spinner animation="border" />
-   )
+   return true
  }
+
 }
 
 export default Sidebar;

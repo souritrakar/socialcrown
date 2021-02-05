@@ -33,11 +33,7 @@
     max-width: 120px;
   }
   
-  button:hover {
-    transform: scale(1.05);
-    transition: transform 0.1s ease;
-    background-color: #8aeaff;
-  }
+
   
   #form > img {
     width: 50%;
