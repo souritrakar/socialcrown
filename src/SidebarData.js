@@ -17,17 +17,7 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaperPlane />,
     cName: 'nav-text'
   },
-  {
-    title: 'Support',
-    path: '/socialcrown/support',
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'nav-text'
-  }, 
-   {
-    title: 'Profile',
-    path: '/socialcrown/profile',
-    icon: <AiIcons.AiOutlineUser />,
-    cName: 'nav-text'
-  }
+
+ 
   
 ];

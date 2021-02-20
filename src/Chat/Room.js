@@ -72,7 +72,7 @@ React.useEffect(()=>{
 
   firebase.firestore().collection("Threads").doc(props.roomid).get().then((doc)=>{
     if(doc.exists){
-     
+      document.title=doc.data().roomname
       setRoomName(doc.data().roomname)
       firebase.firestore().collection("Users").doc(props.user.email).collection("Threads").doc(props.roomid).get().then(doc=>{
         if(!doc.exists){

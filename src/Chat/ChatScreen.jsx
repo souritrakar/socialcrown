@@ -15,7 +15,7 @@ export default class ChatScreen extends React.Component{
       firebase.auth().onAuthStateChanged(cred=>{
         if(cred){
           this.setState({user:cred})
-          firebase.firestore().collection("T")
+         
         }
       })
     }

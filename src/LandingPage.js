@@ -13,6 +13,8 @@ import Skeleton from 'react-loading-skeleton';
 import logo2 from "./images/socialcrown.png"
 import animationData from "./images/loading.json"
 import Lottie from "react-lottie"
+
+
 export default class LandingPage extends React.Component{
     constructor(props){
         super(props)
@@ -23,7 +25,8 @@ export default class LandingPage extends React.Component{
             photo:"",
             posts:[],
             modalOpen:false,
-            hasLoaded:false
+            hasLoaded:false,
+            anchorEl:null
         }
     }
     componentDidMount(){
@@ -147,7 +150,7 @@ export default class LandingPage extends React.Component{
                             <center>
                             <Post  
                             
-                            photo={post.pfp} currentuser={this.state.username}  likes={post.likes} postId={id} username={post.username} caption={post.caption} photoURL={post.imageurl}/>
+                            photo={post.pfp} isauthenticated={true} currentemail={this.state.email} currentuser={this.state.username}  likes={post.likes} postId={id} username={post.username} caption={post.caption} photoURL={post.imageurl}/>
                             </center>
                         )
                     }
@@ -158,7 +161,7 @@ export default class LandingPage extends React.Component{
                             <center>
                             <Post  
                             
-                            photo={post.pfp} currentuser={this.state.username} video={post.videourl} likes={post.likes} postId={id} username={post.username} caption={post.caption}/>
+                            photo={post.pfp} isauthenticated={true}  currentemail={this.state.email} currentuser={this.state.username} video={post.videourl} likes={post.likes} postId={id} username={post.username} caption={post.caption}/>
                             </center>
                         )
                     }
@@ -173,9 +176,3 @@ export default class LandingPage extends React.Component{
 )
     }
 }
-
-
-/*  { this.state.username ? <h1>What's on your mind,{this.state.username}? </h1> : <h1></h1>}
-   <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end",marginRight:"2%"}}>
-    <Avatar alt="Cindy Baker" src={this.state.photo} className="avatar" />
-    </div>*/

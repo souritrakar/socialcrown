@@ -17,13 +17,14 @@ import LandingPage from './LandingPage';
 import ChatScreen from './Chat/ChatScreen';
 import DefaultRoom from './DefaultRoom';
 import VideoRoom from './Chat/VideoRoom';
+import PostScreen from './components/PostScreen';
 
 
 const Main = withRouter(({location})=>{
   return(
     <div className="App">
       {
-        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" && !location.pathname.indexOf("/socialcrown/video/") == 0 && <Navbar/> 
+        location.pathname!== "/socialcrown/login" && location.pathname!=="/socialcrown/signup" && location.pathname!=="/socialcrown/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" && !location.pathname.indexOf("/socialcrown/video/") == 0 && !location.pathname.indexOf("/socialcrown/posts/")== 0 && <Navbar/> 
       }
        <Switch>
           <Route exact path="/socialcrown" component={Home}/>
@@ -31,8 +32,9 @@ const Main = withRouter(({location})=>{
           <Route path="/socialcrown/login" component={LogIn}/>
           <Route path="/socialcrown/home" component={LandingPage}/>
           <Route path="/socialcrown/dms/:roomid" component={ChatScreen}/>
-          <Route path="/socialcrown/dms" component={DefaultRoom}/>
+          <Route path="/socialcrown/dms/" component={DefaultRoom}/>
           <Route path="/socialcrown/video/:videoid" component={VideoRoom}/>
+          <Route path="/socialcrown/posts/:postid" component={PostScreen}/>
           <Route component={NotFound} />
    
         </Switch>

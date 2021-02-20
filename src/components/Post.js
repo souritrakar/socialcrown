@@ -7,13 +7,59 @@ import * as IoIcons from 'react-icons/io';
 import firebase from "../firebase"
 import TextField from '@material-ui/core/TextField';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ShowMoreText from 'react-show-more-text';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { ReactVideo } from "reactjs-media";
+
 export default function Post(props){
 
 const [likes,setLikes]= React.useState(0)
 const [hasLiked,sethasLiked]= React.useState(false)
 const [comments,setComments]=React.useState([])
-
+const [open,setOpen]=React.useState(false)
 const[commentText,setCommentText]=React.useState()
+const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleWhatsapp = () => {
+    var pathname= window.location.pathname
+    var splitname= window.location.pathname.split("/home").shift()
+    var copyText = window.location.protocol+window.location.host+splitname+"/posts/"+props.postId;
+    var mymessage= "Check out this post on Social Crown:  "+copyText
+        var message= mymessage.split(' ').join("%20")
+        var link="https://api.whatsapp.com/send?text="+message
+
+        window.location.href=link
+
+  };
+  const handleClose=(event,reason)=>{
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAnchorEl(null)
+    setOpen(false)
+  }
+  const handleCopy = () => {
+    var pathname= window.location.pathname
+    var splitname= window.location.pathname.split("/home").shift()
+    var copyText = window.location.protocol+window.location.host+splitname+"/posts/"+props.postId;
+
+    
+    navigator.clipboard.writeText(copyText).then(()=>{
+      setAnchorEl(null)
+    }).then(()=>{
+      setOpen(true)
+    })
+
+
+  };
 React.useEffect(()=>{
 
   if(props.postId){
@@ -27,7 +73,7 @@ if(props.postId){
   firebase.firestore().collection("Posts").doc(props.postId).get().then(doc=>{
     var data=doc.data()
     setLikes(data.likes)
-  if(data.likedusers.includes(props.currentuser)){
+  if(data.likedusers.includes(props.currentemail)){
     sethasLiked(true)
   }
   else{
@@ -42,7 +88,7 @@ if(props.postId){
 else{
   alert("error")
 }
-},[props.postId,props.currentuser])
+},[props.postId,props.currentuser,props.currentemail])
 
 const commentPost=()=>{
   if(props.postId){
@@ -62,7 +108,7 @@ else{
 }
 const deletePost=()=>{
   if(props.postId){
-     var confirm= window.confirm("This will delete your post. Are you sure?")
+     var confirm= window.confirm("This will delete your post. Do you really want to do that?")
      if(confirm){
        firebase.firestore().collection("Posts").doc(props.postId).delete().then(()=>{alert("Post deleted.")})
    
@@ -72,10 +118,11 @@ const deletePost=()=>{
     alert("Error.")
   }
 }
+
   return(
     
     <div className="post">
-      
+         
         <div className="post_header"> 
      
         <Avatar  style={{marginTop:"1.7%"}}
@@ -84,7 +131,7 @@ const deletePost=()=>{
         src={props.photo} />
             <h3 style={{marginTop:"1.7%"}}>{props.username}</h3>
             {
-        props.currentuser===props.username &&
+        props.currentuser===props.username && props.isauthenticated===true &&
         (
           <Button
           variant="contained"
@@ -98,6 +145,31 @@ const deletePost=()=>{
         )
         
       }
+        <Button variant="contained" color="lightgreen" style={{marginTop:"2%",marginLeft:"5%"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        SHARE POST
+      </Button>
+       <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleWhatsapp}>Share post</MenuItem>
+        <MenuItem onClick={handleCopy}>Copy post</MenuItem>
+
+      </Menu>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Link copied!"
+       
+      />
             </div>
 
             <br/>
@@ -107,13 +179,12 @@ const deletePost=()=>{
             {/*hedear --> avatar +username */}
             {
               props.video &&
+              
               (
-              <video className="post_video" width={window.innerWidth/5} height={window.innerHeight/2} controls>
-              <source src={props.video} type="video/mp4"/>
-
-             
-              Your browser does not support the video tag.
-            </video>
+              <ReactVideo   src={props.video}
+              poster="https://www.hdwallpapers.in/download/black_design-HD.jpghttps://www.hdwallpapers.in/download/black_design-HD.jpg"
+              primaryColor="red" className="post_video" width={window.innerWidth/5} height={window.innerHeight/2} />
+              
               )
             }
 
@@ -129,14 +200,14 @@ const deletePost=()=>{
     
 
 {
-   hasLiked===false &&
+   hasLiked===false && props.isauthenticated===true &&
     (
  
       <AiIcons.AiOutlineHeart size={30} onClick={()=>{
   
      firebase.firestore().collection("Posts").doc(props.postId).update({
        likes:firebase.firestore.FieldValue.increment(1),
-       likedusers:firebase.firestore.FieldValue.arrayUnion(props.currentuser)
+       likedusers:firebase.firestore.FieldValue.arrayUnion(props.currentemail)
      })
     
     sethasLiked(true)
@@ -146,7 +217,7 @@ const deletePost=()=>{
   )
 }
 {
-  hasLiked &&
+  hasLiked===true && props.isauthenticated===true &&
   (
 
       <AiIcons.AiFillHeart  size={30} onClick={()=>{
@@ -159,7 +230,7 @@ const deletePost=()=>{
            
           firebase.firestore().collection("Posts").doc(props.postId).update({
             likes:firebase.firestore.FieldValue.increment(-1),
-            likedusers:firebase.firestore.FieldValue.arrayRemove(props.currentuser)
+            likedusers:firebase.firestore.FieldValue.arrayRemove(props.currentemail)
           })
           sethasLiked(false)
          }
@@ -182,27 +253,50 @@ const deletePost=()=>{
   )
 }
 
-{ likes<1 || likes>1 ? <h2>{props.likes} likes </h2> :<h2>{props.likes} like</h2>}
+{ likes<1 || likes>1 ? <h2>{props.likes} like(s) </h2> :<h2>{props.likes} like(s)</h2>}
 
 
             <h4 className="post_text"><strong>{props.username} :</strong>  {props.caption} </h4>
            <hr />
            <br/>
            <div style={{display:"flex",flexDirection:"row"}} className="commentsdiv">
-           <TextField onChange={(e)=>{setCommentText(e.target.value)}} placeholder={`Add a comment, ${props.currentuser}`} style={{width:"100%",marginLeft:"1%"}} id="standard-basic"  />
-           <Button onClick={commentPost} style={{marginRight:"1%"}}  disabled={!commentText}>
-             COMMENT
-             </Button>
+
+          {
+            props.isauthenticated === true &&
+
+
+            ( 
+            <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+            <TextField onChange={(e)=>{setCommentText(e.target.value)}} placeholder={`Add a comment, ${props.currentuser}`} style={{width:"100%",marginLeft:"1%"}} id="standard-basic"  />
+             <Button onClick={commentPost} style={{marginRight:"1%"}}  disabled={!commentText}>
+               COMMENT
+               </Button>
+               </div>
+            )
+          }
            </div>
            
            {
              comments &&
              comments.map((comment)=>{
                return(
-                 <div style={{padding:20,display:"flex",justifyContent:"flex-start"}} className="comments">
-                <p> 
-                        <strong>{comment.commenter} : </strong> {comment.comment}
+
+                 <div style={{padding:15,display:"flex",justifyContent:"flex-start",}} className="comments">
+                   <ShowMoreText
+                
+                lines={1}
+                more='Show more'
+                less='Show less'
+                className='content-css'
+                anchorClass='my-anchor-css-class'
+           
+                expanded={false}
+                width={280}
+            >
+                <p style={{marginRight:"10%"}}> 
+                        <strong>{comment.commenter} : </strong> <light>{comment.comment}</light>
                         </p>
+                        </ShowMoreText>
                         </div>
                )
              })

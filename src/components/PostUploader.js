@@ -5,6 +5,8 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import "../index.css"
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function PostUploader(props){
 
@@ -56,26 +58,26 @@ const handleInput=(e)=>{
                     .then(url=>{
                         // FCEF60466FAAB0EB12D42D940D11FB90E671
                         if(fileType==="image"){
-                            firebase.firestore().collection("Posts").add({
+                            var id=uuidv4()
+                            firebase.firestore().collection("Posts").doc(id).set({
                                 timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                                 username:props.username,
                                 caption:caption,
                                 imageurl:url,
-                                
-                 
-                                
+                                postid:id,
                                 pfp:props.pfp,
                                 likes:0,
                                 likedusers:[]
                             })
                         }
                         else if(fileType==="video"){
-                            firebase.firestore().collection("Posts").add({
+                            var id2=uuidv4()
+                            firebase.firestore().collection("Posts").doc(id2).set({
                                 timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                                 username:props.username,
                                 caption:caption,
                                 videourl:url,
-                                
+                                postid:id2,
                                 pfp:props.pfp,
                                 likes:0,
                                 likedusers:[]
@@ -108,7 +110,7 @@ const handleInput=(e)=>{
        
          <input type="text" placeholder="Enter a Caption" onChange={(e) =>setCaption(e.target.value)} value={caption} />
          <input type="file" accept="image/*,video/*" onChange={handleInput} />
-         <LinearProgress variant="determinate" value={progress} />
+         <LinearProgress color="secondary" variant="determinate" value={progress} />
          <br/>
          <Button
         variant="contained"

@@ -34,7 +34,7 @@ import {Button } from '@material-ui/core';
 
 import logo2 from "../images/socialcrown.png"
 
-function Sidebar({user}) {
+function Sidebar(props) {
   const [rooms, setRooms] = useState([]);
     const[pfp,setPfp]=useState("")
  const [roomname,setRoomName]=useState("")
@@ -43,16 +43,18 @@ function Sidebar({user}) {
 
 
     React.useEffect(()=>{
-        setPfp(user.photoURL)
-        firebase.firestore().collection("Users").doc(user.email).collection("Threads").onSnapshot(snapshot=>{
+        setPfp(props.user.photoURL)
+        
+        firebase.firestore().collection("Users").doc(props.user.email).collection("Threads").onSnapshot(snapshot=>{
           const roomsarray=[]
           snapshot.forEach(doc=>{
             roomsarray.push(doc.data())
           })
           setRooms(roomsarray)
+     
           setLoaded(true)
         })
-    },[user])
+    },[props.user.email])
 
 
 
@@ -62,7 +64,7 @@ function Sidebar({user}) {
 
    var result=uuidv4()
    if(roomname.length>4){
-    firebase.firestore().collection("Users").doc(user.email).collection("Threads").doc(result).set({
+    firebase.firestore().collection("Users").doc(props.user.email).collection("Threads").doc(result).set({
       roomname:roomname,
       roomid:result
     })
@@ -74,12 +76,12 @@ function Sidebar({user}) {
       setRoomName("")
 
     })
-   }
-   else{
-    alert("Room Name has to be at least 5 characters.")
-   }
-    
-  }
+    }
+    else{
+      alert("Room Name has to be at least 5 characters.")
+    }
+      
+    }
 
  if(loaded===true){
   return (
@@ -106,18 +108,18 @@ function Sidebar({user}) {
     </Button>
  
    
-     </center>
-     <br/>
-     <br/>
-     <center> <img
-onClick={()=>{this.props.history.push("/socialcrown")}}
-style={{ width: "12%", height: "30%", cursor: "pointer" }}
-src={logo2}
-alt="logo"
+      </center>
+      <br/>
+      <br/>
+      <center> <img
+  onClick={()=>{this.props.history.push("/socialcrown")}}
+  style={{ width: "12%", height: "30%", cursor: "pointer" }}
+  src={logo2}
+  alt="logo"
 
-/></center>
-     <br/>
-     <br/>
+  /></center>
+      <br/>
+      <br/>
 
 
 
@@ -125,7 +127,7 @@ alt="logo"
     </Modal>
 <div className="sidebar__header">
 <Avatar src={pfp}/>
-<h1>{user.displayName}</h1>
+<h1>{props.user.displayName}</h1>
 <div className="sidebar__headerRight">
 <IconButton  onClick={()=>{setModalOpen(true)}} style={{width:"45%"}}>
 <AddIcon/>
@@ -138,7 +140,7 @@ alt="logo"
 
 <div className="sidebar__chats">
 {
-rooms &&
+
 rooms.map(room=>{
 return(
   <SidebarChat id={room.roomid} name={room.roomname} />

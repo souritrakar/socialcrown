@@ -24,7 +24,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-scroll": "^1.8.1",
+    "react-show-more-text": "^1.4.6",
     "react-sidebar": "^3.0.2",
+    "reactjs-media": "^1.4.0",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
