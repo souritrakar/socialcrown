@@ -28,13 +28,13 @@ const Main = withRouter(({location})=>{
       }
        <Switch>
           <Route exact path="/socialcrown" component={Home}/>
-          <Route path="/socialcrown/signup" component={SignUp}/>
-          <Route path="/socialcrown/login" component={LogIn}/>
-          <Route path="/socialcrown/home" component={LandingPage}/>
-          <Route path="/socialcrown/dms/:roomid" component={ChatScreen}/>
-          <Route path="/socialcrown/dms/" component={DefaultRoom}/>
-          <Route path="/socialcrown/video/:videoid" component={VideoRoom}/>
-          <Route path="/socialcrown/posts/:postid" component={PostScreen}/>
+          <Route  exact path="/socialcrown/signup" component={SignUp}/>
+          <Route exact path="/socialcrown/login" component={LogIn}/>
+          <Route exact path="/socialcrown/home" component={LandingPage}/>
+          <Route exact path="/socialcrown/dms/:roomid" component={ChatScreen}/>
+          <Route exact path="/socialcrown/dms/" component={DefaultRoom}/>
+          <Route exact path="/socialcrown/video/:videoid" component={VideoRoom}/>
+          <Route exact path="/socialcrown/posts/:postid" component={PostScreen}/>
           <Route component={NotFound} />
    
         </Switch>
