@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/socialcrown/static/css/main.e3e34660.chunk.css",
-    "main.js": "/socialcrown/static/js/main.ca776db6.chunk.js",
-    "main.js.map": "/socialcrown/static/js/main.ca776db6.chunk.js.map",
-    "runtime-main.js": "/socialcrown/static/js/runtime-main.543eac3d.js",
-    "runtime-main.js.map": "/socialcrown/static/js/runtime-main.543eac3d.js.map",
-    "static/js/2.6a21751c.chunk.js": "/socialcrown/static/js/2.6a21751c.chunk.js",
-    "static/js/2.6a21751c.chunk.js.map": "/socialcrown/static/js/2.6a21751c.chunk.js.map",
-    "static/js/3.a05a8e31.chunk.js": "/socialcrown/static/js/3.a05a8e31.chunk.js",
-    "static/js/3.a05a8e31.chunk.js.map": "/socialcrown/static/js/3.a05a8e31.chunk.js.map",
-    "index.html": "/socialcrown/index.html",
-    "static/css/main.e3e34660.chunk.css.map": "/socialcrown/static/css/main.e3e34660.chunk.css.map",
-    "static/js/2.6a21751c.chunk.js.LICENSE.txt": "/socialcrown/static/js/2.6a21751c.chunk.js.LICENSE.txt",
-    "static/media/credentials.f833051e.svg": "/socialcrown/static/media/credentials.f833051e.svg",
-    "static/media/index.css": "/socialcrown/static/media/mountainlowpoly.b3406575.png",
-    "static/media/socialcrown.45c20030.png": "/socialcrown/static/media/socialcrown.45c20030.png"
+    "main.css": "/static/css/main.7f700648.chunk.css",
+    "main.js": "/static/js/main.76e2ee47.chunk.js",
+    "main.js.map": "/static/js/main.76e2ee47.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8f2a48d7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8f2a48d7.js.map",
+    "static/js/2.a410500b.chunk.js": "/static/js/2.a410500b.chunk.js",
+    "static/js/2.a410500b.chunk.js.map": "/static/js/2.a410500b.chunk.js.map",
+    "static/js/3.a05a8e31.chunk.js": "/static/js/3.a05a8e31.chunk.js",
+    "static/js/3.a05a8e31.chunk.js.map": "/static/js/3.a05a8e31.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.7f700648.chunk.css.map": "/static/css/main.7f700648.chunk.css.map",
+    "static/js/2.a410500b.chunk.js.LICENSE.txt": "/static/js/2.a410500b.chunk.js.LICENSE.txt",
+    "static/media/credentials.f833051e.svg": "/static/media/credentials.f833051e.svg",
+    "static/media/index.css": "/static/media/mountainlowpoly.b3406575.png",
+    "static/media/socialcrown.45c20030.png": "/static/media/socialcrown.45c20030.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.543eac3d.js",
-    "static/js/2.6a21751c.chunk.js",
-    "static/css/main.e3e34660.chunk.css",
-    "static/js/main.ca776db6.chunk.js"
+    "static/js/runtime-main.8f2a48d7.js",
+    "static/js/2.a410500b.chunk.js",
+    "static/css/main.7f700648.chunk.css",
+    "static/js/main.76e2ee47.chunk.js"
   ]
 }
