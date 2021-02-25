@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import {BrowserRouter,Route,Switch,HashRouter} from 'react-router-dom';
 import {NavLink} from "react-router-dom"
 import {withRouter} from "react-router-dom" 
 import Home from './Home';
@@ -60,9 +60,9 @@ class App extends Component {
   render() {
     return (
    
-      <BrowserRouter>
+      <HashRouter basename="/">
      <Main/>
-      </BrowserRouter>
+     </HashRouter>
   
     );
   }
