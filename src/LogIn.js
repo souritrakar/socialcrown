@@ -18,7 +18,7 @@ constructor(props){
 login=(email,password)=>{
 if(this.state.username.length<20){
   firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
-    this.props.history.push("/socialcrown/home")
+    this.props.history.push("/home")
     
 
   }).catch(err=>{
@@ -45,7 +45,7 @@ if(this.state.username.length<20){
   // The signed-in user info.
   var user = result.user;
 
-  this.props.history.push("/socialcrown/home")
+  this.props.history.push("/home")
   // ...
 }).catch((error) => {
   // Handle Errors here.

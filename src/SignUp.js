@@ -23,7 +23,7 @@ constructor(props){
 signUp=(email,password)=>{
 
   firebase.auth().createUserWithEmailAndPassword(email,password).then(()=>{
-    this.props.history.push("/socialcrown/login")
+    this.props.history.push("/login")
     firebase.firestore().collection("Users").doc(email).set({
       username:this.state.username,
       password:password,
@@ -51,7 +51,7 @@ signUp=(email,password)=>{
     // The signed-in user info.
     var user = result.user;
     console.log("signed in", user.displayName)
-    this.props.history.push("/socialcrown/home")
+    this.props.history.push("/home")
     // ...
   }).catch((error) => {
     // Handle Errors here.

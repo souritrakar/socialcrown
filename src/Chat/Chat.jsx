@@ -12,7 +12,7 @@ function SidebarChat({ id, name, addNewChat }) {
 
   return (
       <div>
-    <Link to={`/socialcrown/dms/${id}`}>
+    <Link to={`/dms/${id}`}>
       <div className="sidebarChat">
         <Avatar />
         <div className="sidebarChat__info">

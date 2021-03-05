@@ -10,13 +10,13 @@ class Navbar extends React.Component {
     return (
       <div id="navbar1">
         <img
-        onClick={()=>{this.props.history.push("/socialcrown")}}
+        onClick={()=>{this.props.history.push("/")}}
           style={{ width: "9%", height: "20vh", cursor: "pointer" }}
           src={logo2}
           alt="logo"
          
         />
-           <a href="/socialcrown/login">
+           <a href="/login">
          <p
           
          >
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
         
          </p>
          </a>
-         <a href="/socialcrown/signup">
+         <a href="/signup">
         <p
           
         >   

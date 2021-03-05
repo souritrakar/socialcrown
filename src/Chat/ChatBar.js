@@ -112,7 +112,7 @@ function Sidebar(props) {
       <br/>
       <br/>
       <center> <img
-  onClick={()=>{this.props.history.push("/socialcrown")}}
+  onClick={()=>{this.props.history.push("/")}}
   style={{ width: "12%", height: "30%", cursor: "pointer" }}
   src={logo2}
   alt="logo"

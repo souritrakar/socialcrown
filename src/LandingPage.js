@@ -60,7 +60,7 @@ export default class LandingPage extends React.Component{
           }
           else{{
               alert("Error while signing in.")
-              this.props.history.push("/socialcrown/signup")
+              this.props.history.push("/signup")
           }}
        })
     }
@@ -127,7 +127,7 @@ export default class LandingPage extends React.Component{
                  <br/>
                  
                 <center> <img
-        onClick={()=>{this.props.history.push("/socialcrown")}}
+        onClick={()=>{this.props.history.push("/")}}
           style={{ width: "12%", height: "30%", cursor: "pointer" }}
           src={logo2}
           alt="logo"
