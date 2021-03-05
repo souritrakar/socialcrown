@@ -69,7 +69,7 @@ var link="https://api.whatsapp.com/send?text="+message
 
 
 React.useEffect(()=>{
-  
+
   firebase.firestore().collection("Threads").doc(props.roomid).get().then((doc)=>{
     if(doc.exists){
       document.title=doc.data().roomname
@@ -94,7 +94,7 @@ React.useEffect(()=>{
     }
     else{
       alert("That room does not exist!")
-      window.location.href="/login"
+      window.location.href="/socialcrown/#/login"
     }
   })
 },[props.roomid])
@@ -108,7 +108,7 @@ const scrollToBottom= () => {
 
 const generateRoom=()=>{
   var videoid= props.roomid;
-  history.push("/video/"+props.roomid)
+  history.push("/socialcrown/#/video/"+props.roomid)
   addMessage(props.user.displayName+" has started a video call! Join now :  "+window.location.href )
 
 }

@@ -24,17 +24,17 @@ const Main = withRouter(({location})=>{
   return(
     <div className="App">
       {
-        location.pathname!== "/login" && location.pathname!=="/signup" && location.pathname!=="/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/dms" && !location.pathname.indexOf("/video/") == 0 && !location.pathname.indexOf("/posts/")== 0 && <Navbar/> 
+        location.pathname!== "/socialcrown/#/login" && location.pathname!=="/socialcrown/#/signup" && location.pathname!=="/socialcrown/#/home" && !location.pathname.indexOf("/socialcrown/dms/") == 0 && location.pathname!=="/socialcrown/#/dms" && !location.pathname.indexOf("/socialcrown/#/video/") == 0 && !location.pathname.indexOf("/socialcrown/#/posts/")== 0 && <Navbar/> 
       }
        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route  exact path="/signup" component={SignUp}/>
-          <Route exact path="/login" component={LogIn}/>
-          <Route exact path="/home" component={LandingPage}/>
-          <Route exact path="/dms/:roomid" component={ChatScreen}/>
-          <Route exact path="/dms/" component={DefaultRoom}/>
-          <Route exact path="/video/:videoid" component={VideoRoom}/>
-          <Route exact path="/posts/:postid" component={PostScreen}/>
+          <Route exact path="/socialcrown/#/login" component={Home}/>
+          <Route  exact path="/socialcrown/#/signup" component={SignUp}/>
+          <Route exact path="/socialcrown/#/login" component={LogIn}/>
+          <Route exact path="/socialcrown/#/home" component={LandingPage}/>
+          <Route exact path="/socialcrown/#/dms/:roomid" component={ChatScreen}/>
+          <Route exact path="/socialcrown/#/dms/" component={DefaultRoom}/>
+          <Route exact path="/socialcrown/#/video/:videoid" component={VideoRoom}/>
+          <Route exact path="/socialcrown/#/posts/:postid" component={PostScreen}/>
           <Route component={NotFound} />
    
         </Switch>

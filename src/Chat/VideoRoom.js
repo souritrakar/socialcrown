@@ -26,7 +26,7 @@ export default class VideoRoom extends React.Component{
                 firebase.firestore().collection("Threads").doc(this.props.match.params.videoid).get().then(doc=>{
                     if(!doc.exists){
                         alert("The DM does not exist!")
-                        this.props.history.push("/dms")
+                        this.props.history.push("/socialcrown/#/dms")
                     }
                     else{
                         this.setState({videoid:doc.data().roomid,videoname:doc.data().roomname})
@@ -35,7 +35,7 @@ export default class VideoRoom extends React.Component{
                 })
             }
             else{
-                this.props.history.push("/login")
+                this.props.history.push("/socialcrown/#/login")
             }
         })
         

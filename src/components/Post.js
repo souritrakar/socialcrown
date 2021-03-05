@@ -48,7 +48,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
   }
   const handleCopy = () => {
     var pathname= window.location.pathname
-    var splitname= window.location.pathname.split("/home").shift()
+    var splitname= window.location.pathname.split("/socialcrown/#/home").shift()
     var copyText = window.location.protocol+window.location.host+splitname+"/posts/"+props.postId;
 
     

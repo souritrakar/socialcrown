@@ -16,7 +16,7 @@ class Navbar extends React.Component {
           alt="logo"
          
         />
-           <a href="/login">
+           <a href="/socialcrown/#/login">
          <p
           
          >
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
         
          </p>
          </a>
-         <a href="/signup">
+         <a href="/socialcrown/#/signup">
         <p
           
         >   

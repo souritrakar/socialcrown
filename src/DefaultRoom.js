@@ -17,7 +17,7 @@ export default class DefaultRoom extends React.Component{
             firebase.firestore().collection("Users").doc(cred.email).collection("Threads").get().then(snap=>{
               if(snap.docs.length>0){
                 console.log(snap.docs.map(doc=>{
-                  this.props.history.push("/dms/"+doc.data().roomid)
+                  this.props.history.push("/socialcrown/#/dms/"+doc.data().roomid)
                 }))
 
               }
@@ -41,7 +41,7 @@ export default class DefaultRoom extends React.Component{
                 roomid:result
               })
           }).then(()=>{
-              this.props.history.push("/dms/"+result)
+              this.props.history.push("/socialcrown/#/dms/"+result)
           })
          
        }

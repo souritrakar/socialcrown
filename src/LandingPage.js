@@ -60,7 +60,7 @@ export default class LandingPage extends React.Component{
           }
           else{{
               alert("Error while signing in.")
-              this.props.history.push("/signup")
+              this.props.history.push("/socialcrown/#/signup")
           }}
        })
     }
