@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/socialcrown/static/css/main.e3e34660.chunk.css",
-    "main.js": "/socialcrown/static/js/main.76e2ee47.chunk.js",
-    "main.js.map": "/socialcrown/static/js/main.76e2ee47.chunk.js.map",
+    "main.js": "/socialcrown/static/js/main.d3b2f1e1.chunk.js",
+    "main.js.map": "/socialcrown/static/js/main.d3b2f1e1.chunk.js.map",
     "runtime-main.js": "/socialcrown/static/js/runtime-main.543eac3d.js",
     "runtime-main.js.map": "/socialcrown/static/js/runtime-main.543eac3d.js.map",
     "static/js/2.46af7c03.chunk.js": "/socialcrown/static/js/2.46af7c03.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.543eac3d.js",
     "static/js/2.46af7c03.chunk.js",
     "static/css/main.e3e34660.chunk.css",
-    "static/js/main.76e2ee47.chunk.js"
+    "static/js/main.d3b2f1e1.chunk.js"
   ]
 }
